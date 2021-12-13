@@ -1,7 +1,6 @@
 FROM ballerina/ballerina
-
-
 COPY test-sl-ver/main.bal /opt/
 COPY test-sl-ver/Ballerina.toml /opt/
+RUN cd opt
 RUN bal build
 RUN bal run
