@@ -1,12 +1,22 @@
 FROM ballerina/ballerina
 
-#use this ver for openshift online tool
-# COPY test-sl-ver/main.bal /home/ballerina
-# COPY test-sl-ver/Ballerina.toml /home/ballerina
+# #use this ver for openshift online tool
+# # test-sl-ver/
+# COPY main.bal /home/ballerina
+# COPY Ballerina.toml /home/ballerina
 
-#use this version for building an image locally
-COPY main.bal /home/ballerina
-COPY Ballerina.toml /home/ballerina
+# #use this version for building an image locally
+# COPY main.bal /home/ballerina
+# COPY Ballerina.toml /home/ballerina
 
-RUN bal build
-RUN bal run
+COPY target/bin/test_sl_ver.jar /home/ballerina/
+COPY Dependencies.toml /home/ballerina
+WORKDIR /home/ballerina
+# ENTRYPOINT [ "java", "-jar", "/home/ballerina/test_sl_ver.jar" ]
+CMD java -jar /home/ballerina/test_sl_ver.jar
+
+# RUN bal build
+# RUN bal run
+
+# ENTRYPOINT [ "echo", "Success" ]
+
